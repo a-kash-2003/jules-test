@@ -1,10 +1,32 @@
 {% extends 'tracker/base.html' %}
 
 {% block content %}
-    <h1>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Transaction</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form>
+    <div class="card">
+        <div class="card-header">
+            <h1>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Transaction</h1>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_date">Date</label>
+                    {{ form.date }}
+                </div>
+                <div class="form-group">
+                    <label for="id_description">Description</label>
+                    {{ form.description }}
+                </div>
+                <div class="form-group">
+                    <label for="id_amount">Amount</label>
+                    {{ form.amount }}
+                </div>
+                <div class="form-group">
+                    <label for="id_category">Category</label>
+                    {{ form.category }}
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="{% url 'transaction_list' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
 {% endblock %}
